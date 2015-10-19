@@ -58,4 +58,5 @@ final Merchant merchant = new ReflectionObjectFactory(config).create(Merchant.cl
 ## Basic Assumptions
 This factory is supposed to be used to create Java object that holds data such as primitive, enumeration, array or plain old java object (POJO).
 
-
+## License
+This tool is under Apache License Version 2.0
