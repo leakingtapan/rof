@@ -95,7 +95,7 @@ class TypedObjectFactory(objectFactory: ObjectFactory) extends ObjectFactory {
     ???
   }
 
-  override def isDefinedAt[T: TypeTag : ClassTag]: Boolean = typeOf[T] <:< typeOf[List]
+  override def isDefinedAt[T: TypeTag : ClassTag]: Boolean = ??? //typeOf[T] <:< typeOf[List]
 }
 
 class JavaObjectFactory(factory: jObjectFactory) extends ObjectFactory {
