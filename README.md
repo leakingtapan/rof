@@ -2,20 +2,22 @@
 Reflection object factory(ROF) aims at simplifying the process of creating randomized Plain Old Java Object(POJO). One of the problem is solves is that, when developer writes unit tests, sometimes people wants input/output objects populated with arbitrary but unique data. For example, if you are testing with a mock version of a service, when you need input and output typed Java objects. Writing code to create these objects for unit tests can be time-consuming and tedious.
 
 ## Usage
-Reflection object facotry is fairely easy to use:
+Reflection object factory is fairly easy to use:
 ```
     final ObjectFactory factory = new ReflectionObjectFactory();
     final AcquireMerchantInput input = factory.create(AcquireMerchantInput.class);
     final AcquireMerchantOutput output = factory.create(AcquireMerchantOutput.class);
 ```
 
-### Intialization
+### Initialization
 There are two ways to create an object from reflection object factory:
- - Initial by default constructor
+ - Initial by default constructor:
+
    ```
    final ObjectFactory factory = new ReflectionObjectFactory();
    ```
- - Initial by configuration, where the config object customizes the factory
+ - Initial by configuration, where the config object customizes the factory:
+
    ```
    final Config config = Config.createDefault();
    final ObjectFactory factory = new ReflectionObjectFactory(config);
@@ -50,7 +52,7 @@ final Config config = Config.createDefault()
 final Merchant merchant = new ReflectionObjectFactory(config).create(Merchant.class);
 ```
 
-- Note
+- Note:
   When overriding primitives such as int and Integer, they are treated as different classes, which means if POJO class has int field use int.class in withSupplier method.
 
 ## Basic Assumptions
