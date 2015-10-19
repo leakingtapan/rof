@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/leakingtapan/rof.svg)](https://travis-ci.org/leakingtapan/rof)
 ## Reflection Object Factory
-Reflection object factory(ROF) aims at simplifying the process of creating randomized Plain Old Java Object(POJO). One of the problem is solves is that, when developer writes unit tests, sometimes people wants input/output objects populated with arbitrary but unique data. For example, if you are testing with a mock version of a service, when you need input and output typed Java objects. Writing code to create these objects for unit tests can be time-consuming and tedious.
+Reflection object factory(ROF) aims at simplifying the process of creating randomized Plain Old Java Object(POJO). One of the problem it solves is that, when developer writes unit tests, sometimes people wants input/output objects populated with arbitrary but unique data. For example, if you are testing with a mock version of a service, when you need input and output typed Java objects. Writing code to create these objects for unit tests can be time-consuming and tedious.
 
 ## Usage
 Reflection object factory is fairly easy to use:
