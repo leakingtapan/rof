@@ -3,7 +3,7 @@ Reflection object factory(ROF) aims at simplifying the process of creating rando
 
 ## Usage
 Reflection object factory is fairly easy to use:
-```
+```java
     final ObjectFactory factory = new ReflectionObjectFactory();
     final AcquireMerchantInput input = factory.create(AcquireMerchantInput.class);
     final AcquireMerchantOutput output = factory.create(AcquireMerchantOutput.class);
@@ -11,14 +11,16 @@ Reflection object factory is fairly easy to use:
 
 ### Initialization
 There are two ways to create an object from reflection object factory:
+
  - Initial by default constructor:
 
-   ```
+   ```java
    final ObjectFactory factory = new ReflectionObjectFactory();
    ```
+
  - Initial by configuration, where the config object customizes the factory:
 
-   ```
+   ```java
    final Config config = Config.createDefault();
    final ObjectFactory factory = new ReflectionObjectFactory(config);
    ```
@@ -26,7 +28,8 @@ There are two ways to create an object from reflection object factory:
 ### Customization
 #### Customize Primitive Creation
 By default reflection object factory contains a set of suppliers that can create different primitives. For the full list of primitives and the suppliers, refer to primitive supplier. Here is an example to override the existing primitive supplier:
-```
+
+```java
 final Config config = Config.createDefault()
                 .withSupplier(int.class, new IncrementalIntSupplier(0));
 final int[] incrementalIntegers = new ReflectionObjectFactory(config).create(int[].class);
@@ -34,7 +37,8 @@ final int[] incrementalIntegers = new ReflectionObjectFactory(config).create(int
 
 #### Customize Array Size
 The size of array could be set up in the following way:
-```
+
+```java
     final int minSize = 20;
     final int maxSize = 30;
     final Config config = Config.createDefault()
@@ -46,7 +50,8 @@ The size of array could be set up in the following way:
 Primitives are the building block to create object, but their types are not limited to integer, double, etc. Supplier for any class could be added into configuration to be treated as a building block, so that the supplier will be used first before factory looks into the constructor of that class.
 
 Example:
-```
+
+```java
 final Config config = Config.createDefault()
         .withSupplier(Offer.class, new OfferSupplier());
 final Merchant merchant = new ReflectionObjectFactory(config).create(Merchant.class);
