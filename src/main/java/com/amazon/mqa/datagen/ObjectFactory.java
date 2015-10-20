@@ -85,7 +85,7 @@ public interface ObjectFactory {
      * @param <K> the type of key.
      * @param <V> the type of value.
      * @return a map of object.
-     * @@throws NullPointerException if any argument is <code>null</code>.
+     * @throws NullPointerException if any argument is <code>null</code>.
      *
      * @see ReflectionObjectFactory#mapOf(Class, Class, int)
      */
