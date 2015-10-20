@@ -1,3 +1,5 @@
+import de.johoop.testngplugin.TestNGPlugin._
+
 name := "ObjectFactory"
 
 version := "1.0"
@@ -10,5 +12,12 @@ libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-reflect" % scalaVersion.value,
   "org.testng" % "testng" % "6.8.21" % "test",
   "org.easymock" % "easymock" % "3.3.1" % "test",
+  "org.easymock" % "easymockclassextension" % "3.2" % "test",
   "org.hamcrest" % "hamcrest-library" % "1.3" % "test"
 )
+
+testNGSettings
+
+testNGSuites := Seq("src/test/resources/testng.xml")
+
+resolvers += Resolver.sbtPluginRepo("releases")
