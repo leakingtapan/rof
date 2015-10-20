@@ -5,12 +5,15 @@ import static org.testng.Assert.assertEquals;
 
 import com.beust.jcommander.internal.Lists;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Set;
 
 /** Unit test for {@link DefaultClassSpy}. */
 public final class DefaultClassSpyTest {
@@ -109,8 +112,8 @@ public final class DefaultClassSpyTest {
     @DataProvider
     private Object[][] methodPrefix() {
         return new Object[][] {
-                {"ab", ImmutableList.of("ab", "abc")},
-                {"abc", ImmutableList.of("abc")}
+                {"ab", ImmutableSet.of("ab", "abc")},
+                {"abc", ImmutableSet.of("abc")}
         };
     }
 
@@ -121,7 +124,7 @@ public final class DefaultClassSpyTest {
      * @param methodNames expected method names.
      */
     @Test(dataProvider = "methodPrefix")
-    public void testFindMethodsWithPrefix(final String prefix, final List<String> methodNames) {
+    public void testFindMethodsWithPrefix(final String prefix, final Set<String> methodNames) {
         checkNotNull(prefix, "prefix cannot be null");
         checkNotNull(methodNames, "methodNames cannot be null");
 
@@ -131,7 +134,7 @@ public final class DefaultClassSpyTest {
         // verify
         assertEquals(methods.size(), methodNames.size(), "wrong methods size");
 
-        final List<String> actualMethodNames = Lists.newArrayList();
+        final Set<String> actualMethodNames = Sets.newHashSet();
         for (final Method method : methods) {
             actualMethodNames.add(method.getName());
         }
