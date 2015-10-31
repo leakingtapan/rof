@@ -16,6 +16,7 @@ Reflection object factory is fairly easy to use:
     final ObjectFactory factory = new ReflectionObjectFactory();
     final AcquireMerchantInput input = factory.create(AcquireMerchantInput.class);
     final AcquireMerchantOutput output = factory.create(AcquireMerchantOutput.class);
+    final Set<String> strs = factory.setOf(String.class);
 ```
 
 ### Initialization
