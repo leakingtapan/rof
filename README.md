@@ -6,7 +6,7 @@ Reflection object factory(ROF) aims at simplifying the process of creating rando
 ## Usage
 Reflection object factory is fairly easy to use:
 
- - Add dependency:
+ - Add Sbt dependency:
 ```
  libraryDependencies += "com.amazon.datagen" % "objectfactory_2.11" % "1.0"
 ```
