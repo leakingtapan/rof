@@ -5,6 +5,13 @@ Reflection object factory(ROF) aims at simplifying the process of creating rando
 
 ## Usage
 Reflection object factory is fairly easy to use:
+
+ - Add dependency:
+```
+ libraryDependencies += "com.amazon.datagen" % "objectfactory_2.11" % "1.0"
+```
+
+ - Create objects:
 ```java
     final ObjectFactory factory = new ReflectionObjectFactory();
     final AcquireMerchantInput input = factory.create(AcquireMerchantInput.class);
