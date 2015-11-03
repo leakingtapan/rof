@@ -6,4 +6,7 @@
             <package name="com.amazon.*"/>
         </packages>
     </test>
+    <listeners>
+        <listener class-name="com.amazon.TestNGListener"/>
+    </listeners>
 </suite>

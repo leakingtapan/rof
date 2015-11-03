@@ -15,7 +15,7 @@ licenses += "Apache License Version 2.0" -> url("http://www.apache.org/licenses/
 libraryDependencies ++= Seq(
   "com.google.guava" % "guava" % "18.0",
   "org.apache.commons" % "commons-lang3" % "3.4",
-  "org.testng" % "testng" % "6.8.21" % "test",
+  "org.testng" % "testng" % "6.8.8" % "test",
   "org.easymock" % "easymock" % "3.3.1" % "test",
   "org.easymock" % "easymockclassextension" % "3.2" % "test",
   "org.hamcrest" % "hamcrest-library" % "1.3" % "test"
