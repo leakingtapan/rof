@@ -8,7 +8,7 @@ Reflection object factory is fairly easy to use:
 
  - Add Sbt dependency:
 ```
- libraryDependencies += "com.amazon.datagen" % "objectfactory_2.11" % "1.0"
+ libraryDependencies += "com.amazon.datagen" % "objectfactory" % "1.0"
 ```
 
  - Create objects:
