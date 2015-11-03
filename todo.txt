@@ -1,5 +1,0 @@
-1. publish ROF to maven
-2. fix MerchantID creation random failure
-3. fix protected constructor should not be found by classSpy
-4. Provide a convenient one stop shop for StringFactory
-5. checkout Shapeless
