@@ -13,7 +13,7 @@ public final class ObjectFactoryBuilder {
     private Config config = Config.createDefault();
 
     /**
-     * @see Config#withSupplier(Class, Supplier).
+     * @see Config#withSupplier(Class, Supplier)
      * @param clazz the class to supplier
      * @param supplier the supplier of class.
      * @param <T> the type of class.

@@ -4,8 +4,6 @@ name := "ObjectFactory"
 
 version := "1.0"
 
-scalaVersion := "2.11.6"
-
 organization := "com.amazon.datagen"
 
 organizationName := "Amazon Technologies, Inc."
@@ -17,7 +15,6 @@ licenses += "Apache License Version 2.0" -> url("http://www.apache.org/licenses/
 libraryDependencies ++= Seq(
   "com.google.guava" % "guava" % "18.0",
   "org.apache.commons" % "commons-lang3" % "3.4",
-  "org.scala-lang" % "scala-reflect" % scalaVersion.value,
   "org.testng" % "testng" % "6.8.21" % "test",
   "org.easymock" % "easymock" % "3.3.1" % "test",
   "org.easymock" % "easymockclassextension" % "3.2" % "test",
@@ -31,6 +28,12 @@ testNGSuites := Seq("src/test/resources/testng.xml")
 resolvers += Resolver.sbtPluginRepo("releases")
 
 publishMavenStyle := true
+
+// Do not append Scala versions to the generated artifacts
+crossPaths := false
+
+// This forbids including Scala related libraries into the dependency
+autoScalaLibrary := false
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
