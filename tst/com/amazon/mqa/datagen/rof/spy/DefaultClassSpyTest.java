@@ -3,8 +3,6 @@ package com.amazon.mqa.datagen.rof.spy;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.testng.Assert.assertEquals;
 
-import com.beust.jcommander.internal.Lists;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import org.testng.annotations.DataProvider;

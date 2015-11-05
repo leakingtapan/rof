@@ -21,19 +21,28 @@ libraryDependencies ++= Seq(
   "org.hamcrest" % "hamcrest-library" % "1.3" % "test"
 )
 
+// TestNG settings
 testNGSettings
 
-testNGSuites := Seq("src/test/resources/testng.xml")
+testNGSuites := Seq("tst/resources/testng.xml")
 
 resolvers += Resolver.sbtPluginRepo("releases")
 
-publishMavenStyle := true
-
+// Java Project Settings
 // Do not append Scala versions to the generated artifacts
 crossPaths := false
 
 // This forbids including Scala related libraries into the dependency
 autoScalaLibrary := false
+
+javaSource in Compile := baseDirectory.value / "src"
+
+javaSource in Test := baseDirectory.value / "tst"
+
+resourceDirectory in Test := baseDirectory.value / "tst" / "resources"
+
+// Sonatype Publish
+publishMavenStyle := true
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
