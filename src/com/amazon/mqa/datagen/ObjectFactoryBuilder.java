@@ -29,6 +29,22 @@ public final class ObjectFactoryBuilder {
     }
 
     /**
+     * @see Config#withSupplier(String, Supplier)
+     * @param method the proxy method name.
+     * @param supplier the supplier of class.
+     * @param <T> the type of class.
+     * @return the builder.
+     */
+    public <T> ObjectFactoryBuilder withSupplier(final String method, final Supplier<T> supplier) {
+        checkNotNull(method, "method cannot be null");
+        checkNotNull(supplier, "supplier cannot be null");
+
+        this.config = config.withSupplier(method, supplier);
+
+        return this;
+    }
+
+    /**
      * Builds {@link ObjectFactory}.
      *
      * @return the instance.

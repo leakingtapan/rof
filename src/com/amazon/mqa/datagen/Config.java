@@ -74,6 +74,9 @@ public final class Config {
     /** Map from class to supplier. */
     private final Map<Class<?>, Supplier> suppliers;
 
+    /** Suppliers for proxy method. */
+    private final Map<String, Supplier> pmSuppliers;
+
     /** Supplies array size. */
     private final Supplier<Integer> arraySizeSupplier;
 
@@ -84,8 +87,24 @@ public final class Config {
      * @param arraySizeSupplier supplies array size.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    Config(final Map<Class<?>, Supplier> suppliers, final Supplier<Integer> arraySizeSupplier) {
+    Config(final Map<Class<?>, Supplier> suppliers,
+           final Supplier<Integer> arraySizeSupplier) {
+        this(suppliers, Maps.newHashMap(), arraySizeSupplier);
+    }
+
+    /**
+     * Instantiates a new {@link Config}.
+     *
+     * @param suppliers a map from class to its supplier.
+     * @param pmSuppliers a map from proxy method name to its supplier.
+     * @param arraySizeSupplier supplies array size.
+     * @throws NullPointerException if any argument is <code>null</code>.
+     */
+    Config(final Map<Class<?>, Supplier> suppliers,
+           final Map<String, Supplier> pmSuppliers,
+           final Supplier<Integer> arraySizeSupplier) {
         this.suppliers = checkNotNull(suppliers, "suppliers cannot be null");
+        this.pmSuppliers = checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
         this.arraySizeSupplier = checkNotNull(arraySizeSupplier, "arraySizeSupplier cannot be null");
     }
 
@@ -108,7 +127,29 @@ public final class Config {
         newSuppliers.putAll(suppliers);
         newSuppliers.put(clazz, supplier);
 
-        return new Config(newSuppliers, arraySizeSupplier);
+        return new Config(newSuppliers, pmSuppliers, arraySizeSupplier);
+    }
+
+    /**
+     * Create a new {@link Config} with supplier for class.
+     *
+     * If class is not in supplier map, add a supplier for class; otherwise, update the supplier.
+     *
+     * @param method proxy method name.
+     * @param supplier the supplier of class.
+     * @param <T> the type of class.
+     * @return the new configuration.
+     * @throws NullPointerException if any argument is <code>null</code>.
+     */
+    public <T> Config withSupplier(final String method, final Supplier<T> supplier) {
+        checkNotNull(method, "method cannot be null");
+        checkNotNull(supplier, "supplier cannot be null");
+
+        final Map<String, Supplier> newSuppliers = Maps.newHashMap();
+        newSuppliers.putAll(pmSuppliers);
+        newSuppliers.put(method, supplier);
+
+        return new Config(suppliers, newSuppliers, arraySizeSupplier);
     }
 
     /**
@@ -121,7 +162,7 @@ public final class Config {
     public Config withArraySizeSupplier(final Supplier<Integer> arraySizeSupplier) {
         checkNotNull(arraySizeSupplier, "arraySizeSupplier cannot be null");
 
-        return new Config(suppliers, arraySizeSupplier);
+        return new Config(suppliers, pmSuppliers, arraySizeSupplier);
     }
 
     /**
@@ -129,6 +170,13 @@ public final class Config {
      */
     public Map<Class<?>, Supplier> getSuppliers() {
         return ImmutableMap.copyOf(suppliers);
+    }
+
+    /**
+     * @return the suppliers for proxy method.
+     */
+    public Map<String, Supplier> getPmSuppliers() {
+        return ImmutableMap.copyOf(pmSuppliers);
     }
 
     /**

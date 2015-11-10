@@ -61,7 +61,10 @@ public final class ReflectionObjectFactory implements ObjectFactory {
     public ReflectionObjectFactory(final Config config) {
         checkNotNull(config, "config can't be null");
 
-        this.objectFactory = new DefaultObjectFactory(config.getSuppliers(), config.getArraySizeSupplier());
+        this.objectFactory = new DefaultObjectFactory(
+                config.getSuppliers(),
+                config.getPmSuppliers(),
+                config.getArraySizeSupplier());
         this.collectionSizeSupplier = config.getArraySizeSupplier();
     }
 

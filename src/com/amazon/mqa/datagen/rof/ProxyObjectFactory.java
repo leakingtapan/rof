@@ -2,11 +2,13 @@ package com.amazon.mqa.datagen.rof;
 
 import com.amazon.mqa.datagen.rof.typed.DefaultTypedObjectFactory;
 import com.amazon.mqa.datagen.rof.typed.TypedObjectFactory;
+import com.google.common.base.Supplier;
 import com.google.common.reflect.AbstractInvocationHandler;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -23,14 +25,19 @@ final class ProxyObjectFactory implements ObjectFactory {
         /** Create random object. */
         private final TypedObjectFactory factory;
 
+        /** Suppliers for proxy method. */
+        private final Map<String, Supplier> pmSuppliers;
+
         /**
          * Instantiate a new {@link Handler}.
          *
          * @param factory create random object.
+         * @param pmSuppliers suppliers for proxy method.
          * @throws NullPointerException if any argument is <code>null</code>.
          */
-        Handler(final TypedObjectFactory factory) {
+        Handler(final TypedObjectFactory factory, final Map<String, Supplier> pmSuppliers) {
             this.factory = checkNotNull(factory, "factory cannot be null");
+            this.pmSuppliers = checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
         }
 
         @Override
@@ -41,6 +48,10 @@ final class ProxyObjectFactory implements ObjectFactory {
             checkNotNull(method, "method cannot be null");
             checkNotNull(args, "args cannot be null");
 
+            if (pmSuppliers.containsKey(method.getName())) {
+                return pmSuppliers.get(method.getName()).get();
+            }
+
             return factory.create(method.getReturnType());
         }
     }
@@ -49,12 +60,18 @@ final class ProxyObjectFactory implements ObjectFactory {
      * creates a new {@link ProxyObjectFactory}.
      *
      * @param factory the inner factory.
+     * @param pmSuppliers suppliers for proxy method.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    static ProxyObjectFactory create(final ObjectFactory factory) {
+    static ProxyObjectFactory create(final ObjectFactory factory, final Map<String, Supplier> pmSuppliers) {
         checkNotNull(factory, "factory cannot be null");
+        checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
 
-        return new ProxyObjectFactory(new Handler(new DefaultTypedObjectFactory(factory)));
+        return new ProxyObjectFactory(
+                new Handler(
+                        new DefaultTypedObjectFactory(factory),
+                        pmSuppliers)
+        );
     }
 
     /** Method invocation handler. */

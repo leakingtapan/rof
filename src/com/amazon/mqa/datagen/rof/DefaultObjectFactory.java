@@ -21,12 +21,15 @@ public final class DefaultObjectFactory implements ObjectFactory {
      * Instantiates a new {@link DefaultObjectFactory}.
      *
      * @param primitiveSuppliers suppliers for primitives.
+     * @param pmSuppliers suppliers for method of proxy object.
      * @param arraySizeSupplier supplies size for array.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
     public DefaultObjectFactory(final Map<Class<?>, Supplier> primitiveSuppliers,
-                final Supplier<Integer> arraySizeSupplier) {
+                                final Map<String, Supplier> pmSuppliers,
+                                final Supplier<Integer> arraySizeSupplier) {
         checkNotNull(primitiveSuppliers, "primitiveSuppliers cannot be null");
+        checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
         checkNotNull(arraySizeSupplier, "arraySizeSupplier cannot be null");
 
         // the order matters
@@ -35,7 +38,7 @@ public final class DefaultObjectFactory implements ObjectFactory {
                 new ObjectArrayFactory(this, arraySizeSupplier),
                 new EnumFactory(),
                 PojoFactory.create(this),
-                ProxyObjectFactory.create(this)
+                ProxyObjectFactory.create(this, pmSuppliers)
         );
     }
 

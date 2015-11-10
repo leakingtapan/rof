@@ -267,6 +267,28 @@ public final class ReflectionObjectFactoryFunctionalTest {
         assertNotNull(obj);
         assertNotNull(obj.getString());
         assertNotNull(obj.getInt());
+        assertNotNull(obj.getTestClassA());
+    }
+
+    /**
+     * Tests creating proxy object with fixed return value for proxy method.
+     *
+     * @throws Exception if any problem occurs.
+     */
+    @Test
+    public void testCreateForInterfaceWithFixValue() throws Exception {
+        // set up
+        final ObjectFactory factory =
+                new ReflectionObjectFactory(
+                        Config.createDefault()
+                                .withSupplier("getInt", () -> 100)
+                );
+
+        // exercise
+        final InterfaceA object = factory.create(InterfaceA.class);
+
+        // verify
+        assertEquals(object.getInt(), 100);
     }
 
 }

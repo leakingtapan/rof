@@ -15,4 +15,9 @@ public interface InterfaceA {
      */
     String getString();
 
+    /**
+     * @return test class A.
+     */
+    TestClassA getTestClassA();
+
 }
