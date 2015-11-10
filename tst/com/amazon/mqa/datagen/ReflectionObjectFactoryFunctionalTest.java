@@ -253,4 +253,20 @@ public final class ReflectionObjectFactoryFunctionalTest {
         assertThat("max size", randomStrings.length, lessThanOrEqualTo(maxSize));
     }
 
+    /**
+     * Tests creating proxy object for interface.
+     *
+     * @throws Exception if any problem occurs.
+     */
+    @Test
+    public void testCreateForInterface() throws Exception {
+        // exercise
+        final InterfaceA obj = new ReflectionObjectFactory().create(InterfaceA.class);
+
+        // verify
+        assertNotNull(obj);
+        assertNotNull(obj.getString());
+        assertNotNull(obj.getInt());
+    }
+
 }

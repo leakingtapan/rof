@@ -34,7 +34,8 @@ public final class DefaultObjectFactory implements ObjectFactory {
                 new BasicObjectFactory(primitiveSuppliers),
                 new ObjectArrayFactory(this, arraySizeSupplier),
                 new EnumFactory(),
-                PojoFactory.create(this)
+                PojoFactory.create(this),
+                ProxyObjectFactory.create(this)
         );
     }
 

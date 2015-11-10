@@ -24,7 +24,7 @@ final class ObjectArrayFactory implements ObjectFactory {
      * @param arraySizeSupplier supplies array size.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    public ObjectArrayFactory(final ObjectFactory objectFactory, final Supplier<Integer> arraySizeSupplier) {
+    ObjectArrayFactory(final ObjectFactory objectFactory, final Supplier<Integer> arraySizeSupplier) {
         this.objectFactory = checkNotNull(objectFactory, "objectFactory cannot be null");
         this.arraySizeSupplier = checkNotNull(arraySizeSupplier, "arraySizeSupplier cannot be null");
     }

@@ -32,7 +32,7 @@ final class PojoFactory implements ObjectFactory {
      * @return the default instance.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    public static PojoFactory create(final ObjectFactory objectFactory) {
+    static PojoFactory create(final ObjectFactory objectFactory) {
         checkNotNull(objectFactory, "objectFactory cannot be null");
 
         return new PojoFactory(

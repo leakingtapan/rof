@@ -17,6 +17,7 @@ enum DefaultCollectionInstanceProvider implements CollectionInstanceProvider {
     /** Singleton instance. */
     INSTANCE;
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Collection> T provide(final Class<T> collectionClass) {
         checkNotNull(collectionClass, "collectionClass cannot be null");
