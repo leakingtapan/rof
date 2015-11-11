@@ -28,8 +28,10 @@ public final class ObjectFactoryBuilderTest {
      */
     @Test
     public void testBuildForInterface() throws Exception {
-        // exercise
+        // set up
         final int constant = new ReflectionObjectFactory().create(int.class);
+
+        // exercise
         final InterfaceA obj = new ObjectFactoryBuilder()
                 .withSupplier("getInt", () -> constant)
                 .build()
