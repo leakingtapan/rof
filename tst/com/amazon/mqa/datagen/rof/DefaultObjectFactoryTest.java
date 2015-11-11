@@ -2,7 +2,6 @@ package com.amazon.mqa.datagen.rof;
 
 import static org.easymock.EasyMock.expect;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
 
 import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
 import com.amazon.mtqa.testutil.MockObjectContainer;
@@ -65,7 +64,7 @@ public final class DefaultObjectFactoryTest {
     /**
      * Tests creating unhandled object.
      */
-    @Test
+    @Test(expectedExceptions = ObjectCreationException.class)
     public void testCreateUnhandledClass() {
         // set up
         final Class<Integer> clazz = Integer.class;
@@ -76,11 +75,7 @@ public final class DefaultObjectFactoryTest {
         mocks.replayAll();
 
         // exercise
-        final Integer actual = factory.create(clazz);
-
-        // verify
-        assertNull(actual);
-        mocks.verifyAll();
+        factory.create(clazz);
     }
 
 }

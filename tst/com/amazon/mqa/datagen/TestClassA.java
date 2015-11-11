@@ -65,7 +65,7 @@ public final class TestClassA {
      * @throws NullPointerException if any argument is <code>null</code>.
      */
     //CHECKSTYLE:SUPPRESS:Param Count
-    public TestClassA(final boolean booleanField, final byte byteField, final char charField,
+    TestClassA(final boolean booleanField, final byte byteField, final char charField,
              final double doubleField, final float floatField, final int intField, final long longField,
              final short shortField, final String stringField, final List<List<Integer>> list,
              final Set<Double> doubles, final Map<Set<Integer>, List<String>> mapField) {

@@ -63,7 +63,7 @@ public final class DefaultObjectFactory implements ObjectFactory {
             }
         }
 
-        return null;
+        throw new ObjectCreationException("Unsupported class: " + clazz);
     }
 
 }

@@ -88,6 +88,8 @@ final class PojoFactory implements ObjectFactory {
         assert clazz != null : "clazz cannot be null";
 
         final Constructor<T> constructor = spy.findConstructor(clazz);
+        // allow the invocation of non-public constructor
+        constructor.setAccessible(true);
 
         final List<Object> constructorArgs = Lists.newArrayList();
         for (final Type genericType : constructor.getGenericParameterTypes()) {
