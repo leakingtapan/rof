@@ -29,13 +29,14 @@ public final class ObjectFactoryBuilderTest {
     @Test
     public void testBuildForInterface() throws Exception {
         // exercise
+        final int constant = new ReflectionObjectFactory().create(int.class);
         final InterfaceA obj = new ObjectFactoryBuilder()
-                .withSupplier("getInt", () -> 200)
+                .withSupplier("getInt", () -> constant)
                 .build()
                 .create(InterfaceA.class);
 
         // verify
-        assertEquals(obj.getInt(), 200);
+        assertEquals(obj.getInt(), constant);
     }
 
 }

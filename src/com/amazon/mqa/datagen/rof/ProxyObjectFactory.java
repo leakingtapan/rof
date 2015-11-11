@@ -40,6 +40,7 @@ final class ProxyObjectFactory implements ObjectFactory {
             this.pmSuppliers = checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
         }
 
+        //CHECKSTYLE:SUPPRESS:IllegalThrows
         @Override
         protected Object handleInvocation(final Object proxy,
                                           final Method method,
@@ -54,6 +55,7 @@ final class ProxyObjectFactory implements ObjectFactory {
 
             return factory.create(method.getReturnType());
         }
+        //CHECKSTYLE:UNSUPPRESS:IllegalThrows
     }
 
     /**
@@ -61,6 +63,7 @@ final class ProxyObjectFactory implements ObjectFactory {
      *
      * @param factory the inner factory.
      * @param pmSuppliers suppliers for proxy method.
+     * @return the instance.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
     static ProxyObjectFactory create(final ObjectFactory factory, final Map<String, Supplier> pmSuppliers) {

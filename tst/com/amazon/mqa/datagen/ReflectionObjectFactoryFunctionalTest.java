@@ -278,17 +278,18 @@ public final class ReflectionObjectFactoryFunctionalTest {
     @Test
     public void testCreateForInterfaceWithFixValue() throws Exception {
         // set up
+        final int constant = 100;
         final ObjectFactory factory =
                 new ReflectionObjectFactory(
                         Config.createDefault()
-                                .withSupplier("getInt", () -> 100)
+                                .withSupplier("getInt", () -> constant)
                 );
 
         // exercise
         final InterfaceA object = factory.create(InterfaceA.class);
 
         // verify
-        assertEquals(object.getInt(), 100);
+        assertEquals(object.getInt(), constant);
     }
 
 }

@@ -10,19 +10,19 @@ import org.testng.TestListenerAdapter;
 public final class TestNGListener extends TestListenerAdapter {
 
     @Override
-    public void onTestFailure(ITestResult tr) {
+    public void onTestFailure(final ITestResult tr) {
         System.out.println("Failure: " + tr.getTestClass().getName());
         System.out.println("\t - " + tr.getName() + formatParameter(tr.getParameters()));
     }
 
     @Override
-    public void onTestSkipped(ITestResult tr) {
+    public void onTestSkipped(final ITestResult tr) {
         System.out.println("Skipped: " + tr.getTestClass().getName());
         System.out.println("\t - " + tr.getName() + formatParameter(tr.getParameters()));
     }
 
     @Override
-    public void onTestSuccess(ITestResult tr) {
+    public void onTestSuccess(final ITestResult tr) {
 
     }
 
