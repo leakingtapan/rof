@@ -20,4 +20,9 @@ public interface InterfaceA {
      */
     TestClassA getTestClassA();
 
+    /**
+     * Unsupported: Void method.
+     */
+    void voidMethod();
+
 }

@@ -292,4 +292,43 @@ public final class ReflectionObjectFactoryFunctionalTest {
         assertEquals(object.getInt(), constant);
     }
 
+    //CHECKSTYLE:SUPPRESS:IllegalType
+    /**
+     * Tests creating proxy object for abstract class.
+     *
+     * @throws Exception if any problem occurs.
+     */
+    @Test
+    public void testCreateForAbstractClass() throws Exception {
+        // exercise
+        final AbstractClassA obj = new ReflectionObjectFactory().create(AbstractClassA.class);
+
+        // verify
+        assertNotNull(obj.getAbstractDouble());
+    }
+
+    /**
+     * Tests creating proxy object with fixed return value for abstract class.
+     *
+     * @throws Exception if any problem occurs.
+     */
+    @Test
+    public void testCreateForAbstractClassWithFixValue() throws Exception {
+        // set up
+        final double constant = 1.0;
+        final ObjectFactory factory =
+                new ReflectionObjectFactory(
+                        Config.createDefault()
+                                .withSupplier("getAbstractDouble", () -> constant)
+                );
+
+        // exercise
+        final AbstractClassA obj = factory.create(AbstractClassA.class);
+
+        // verify
+        assertEquals(obj.getAbstractDouble(), constant);
+        assertEquals(obj.getString(), "abstract class A");
+    }
+    //CHECKSTYLE:UNSUPPRESS:IllegalType
+
 }

@@ -2,6 +2,7 @@ package com.amazon.mqa.datagen.rof;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.amazon.mqa.datagen.rof.typed.DefaultTypedObjectFactory;
 import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableList;
 
@@ -32,13 +33,17 @@ public final class DefaultObjectFactory implements ObjectFactory {
         checkNotNull(pmSuppliers, "pmSuppliers cannot be null");
         checkNotNull(arraySizeSupplier, "arraySizeSupplier cannot be null");
 
+        // proxy handler
+        final Handler handler = new Handler(new DefaultTypedObjectFactory(this), pmSuppliers);
+
         // the order matters
         this.objectFactories = ImmutableList.of(
                 new BasicObjectFactory(primitiveSuppliers),
                 new ObjectArrayFactory(this, arraySizeSupplier),
                 new EnumFactory(),
                 PojoFactory.create(this),
-                ProxyObjectFactory.create(this, pmSuppliers)
+                new InterfaceProxyFactory(handler),
+                new AbstractClassProxyFactory(handler)
         );
     }
 
