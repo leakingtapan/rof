@@ -18,10 +18,9 @@ import java.util.Set;
  *     Creates objects with most of the fields populated from a class definition.
  *     Assists in creating random objects for unit tests.
  *     This is the main entry point for object creation.
- *     It can be used to create Primitives, Array, Enum, POJO, Set, List and Map.
+ *     It can create Primitives, Array, Enum, POJO, Set, List and Map.
+ *     It can create Proxy for interface and abstract class.
  * </p>
- *
- * <p>NOTE: Interface and abstract class are not supported in current version.</p>
  */
 public final class ReflectionObjectFactory implements ObjectFactory {
 
