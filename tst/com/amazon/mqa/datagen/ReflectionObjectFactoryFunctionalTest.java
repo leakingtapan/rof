@@ -1,11 +1,9 @@
 package com.amazon.mqa.datagen;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
 import org.testng.annotations.DataProvider;
@@ -249,8 +247,8 @@ public final class ReflectionObjectFactoryFunctionalTest {
         final String[] randomStrings = withArraySize.create(String[].class);
 
         // verify
-        assertThat("min size", randomStrings.length, greaterThanOrEqualTo(minSize));
-        assertThat("max size", randomStrings.length, lessThanOrEqualTo(maxSize));
+        assertTrue(randomStrings.length >= minSize);
+        assertTrue(randomStrings.length <  maxSize);
     }
 
     /**

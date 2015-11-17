@@ -18,8 +18,7 @@ libraryDependencies ++= Seq(
   "cglib" % "cglib" % "3.2.0",
   "org.testng" % "testng" % "6.8.8" % "test",
   "org.easymock" % "easymock" % "3.3.1" % "test",
-  "org.easymock" % "easymockclassextension" % "3.2" % "test",
-  "org.hamcrest" % "hamcrest-library" % "1.3" % "test"
+  "org.easymock" % "easymockclassextension" % "3.2" % "test"
 )
 
 // TestNG settings
