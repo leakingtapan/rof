@@ -39,7 +39,6 @@ public abstract class AbstractObjectFactory implements ObjectFactory {
      */
     protected AbstractObjectFactory(final Config config) {
         checkNotNull(config, "config cannot be null");
-        checkNotNull(config, "config cannot be null");
 
         this.config = config;
         this.factory = new DefaultObjectFactory(
