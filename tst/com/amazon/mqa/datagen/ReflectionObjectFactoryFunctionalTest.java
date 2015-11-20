@@ -327,6 +327,22 @@ public final class ReflectionObjectFactoryFunctionalTest {
         assertEquals(obj.getAbstractDouble(), constant);
         assertEquals(obj.getString(), "abstract class A");
     }
+
+
+    /**
+     * Tests creating proxy object for abstract class which doesn't have default constructor.
+     *
+     * @throws Exception if any problem occurs.
+     */
+    //ROF doesn't support this case
+    @Test(enabled = false)
+    public void testCreateForAbstractClassB() throws Exception {
+        // exercise
+        final AbstractClassB obj = ReflectionObjectFactory.createObject(AbstractClassB.class);
+
+        // verify
+        assertNotNull(obj);
+    }
     //CHECKSTYLE:UNSUPPRESS:IllegalType
 
 }
