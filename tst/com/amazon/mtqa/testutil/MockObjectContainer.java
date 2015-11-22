@@ -117,7 +117,7 @@ public final class MockObjectContainer {
         Validate.notNull(name, "null mock name");
         Validate.notNull(toMock, "null class to mock");
 
-        final T mock = org.easymock.classextension.EasyMock.createMock(name, toMock);
+        final T mock = EasyMock.createMock(name, toMock);
         classMocks.add(mock);
 
         return mock;
@@ -128,7 +128,7 @@ public final class MockObjectContainer {
      */
     public void replayAll() {
         EasyMock.replay(mocks.toArray(new Object[mocks.size()]));
-        org.easymock.classextension.EasyMock.replay(classMocks.toArray(new Object[classMocks.size()]));
+        EasyMock.replay(classMocks.toArray(new Object[classMocks.size()]));
     }
 
     /**
@@ -136,7 +136,7 @@ public final class MockObjectContainer {
      */
     public void verifyAll() {
         EasyMock.verify(mocks.toArray(new Object[mocks.size()]));
-        org.easymock.classextension.EasyMock.verify(classMocks.toArray(new Object[classMocks.size()]));
+        EasyMock.verify(classMocks.toArray(new Object[classMocks.size()]));
     }
 
 }
