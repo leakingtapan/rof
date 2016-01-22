@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Thrown when failed to create object.
  */
-class ObjectCreationException extends RuntimeException {
+public class ObjectCreationException extends RuntimeException {
 
     /** Serial version ID. */
     private static final long serialVersionUID = 3194143595059914810L;

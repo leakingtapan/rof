@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
+import com.amazon.mqa.datagen.rof.ObjectCreationException;
 import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -330,12 +331,11 @@ public final class ReflectionObjectFactoryFunctionalTest {
 
 
     /**
-     * Tests creating proxy object for abstract class which doesn't have default constructor.
+     * Tests creating proxy object for abstract class which doesn't have no argument constructor.
      *
      * @throws Exception if any problem occurs.
      */
-    //ROF doesn't support this case
-    @Test(enabled = false)
+    @Test(expectedExceptions = ObjectCreationException.class)
     public void testCreateForAbstractClassB() throws Exception {
         // exercise
         final AbstractClassB obj = ReflectionObjectFactory.createObject(AbstractClassB.class);
