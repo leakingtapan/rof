@@ -34,14 +34,14 @@ There are two ways to create an object from reflection object factory:
    final Config config = Config.createDefault();
    final ObjectFactory factory = new ReflectionObjectFactory(config);
    ```
-### Create Objects
+
+### Supported Class Type 
 Object factory supports following types of object creation:
 
 - Primitives
   - boolean, byte, char, double, float, int, long, short
   - Boolean, Byte, Character, Double, Float, Integer, Long, Short, String, Date, BigInteger, BigDecimal
   - Array of any of above such as int[] or Integer[]
-
 - Plan Old Java Object (POJO)
 - Abstract Class Proxy
   - Note: only abstract with empty parameter constructor is supported
@@ -51,6 +51,7 @@ __Note__
 
   - When calling a method from Proxied abstract class/interface, each time the return value is randomized by default.
   - You can use Config.withSupplier to customize how the return value is generated for specific method.
+  - Customized type can also be add through Config class. See [Customize Your Own Class as Primitive](#customize-your-own-class-as-primitive) 
 
 ### Customization
 #### Customize Primitive Creation
