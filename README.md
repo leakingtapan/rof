@@ -51,7 +51,7 @@ __Note__
 
   - When calling a method from Proxied abstract class/interface, each time the return value is randomized by default.
   - You can use Config.withSupplier to customize how the return value is generated for specific method.
-  - Customized type can also be add through Config class. See [Customize Your Own Class as Primitive](#customize-your-own-class-as-primitive) 
+  - Customized type can also be add through Config class. See [Customization](#customize-your-own-class-as-primitive) 
 
 ### Customization
 #### Customize Primitive Creation
