@@ -18,6 +18,7 @@ import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Unit test for {@link DefaultTypedObjectFactory}.
@@ -39,6 +40,9 @@ public final class DefaultTypedObjectFactoryTest {
     /** Mock map factory. */
     private MapFactory mockMapFactory;
 
+    /** Mock optional factory. */
+    private OptionalFactory mockOptionalFactory;
+
     /** Object under test. */
     private TypedObjectFactory factory;
 
@@ -50,8 +54,10 @@ public final class DefaultTypedObjectFactoryTest {
         mockObjectFactory = mocks.createMock("mockObjectFactory", ObjectFactory.class);
         mockCollectionFactory = mocks.createMock("mockCollectionFactory", CollectionFactory.class);
         mockMapFactory = mocks.createMock("mockMapFactory", MapFactory.class);
+        mockOptionalFactory = mocks.createMock("mockOptionalFactory", OptionalFactory.class);
 
-        factory = new DefaultTypedObjectFactory(mockObjectFactory, mockCollectionFactory, mockMapFactory);
+        factory = new DefaultTypedObjectFactory(mockObjectFactory, mockCollectionFactory,
+                mockMapFactory, mockOptionalFactory);
     }
 
     /**
@@ -117,6 +123,31 @@ public final class DefaultTypedObjectFactoryTest {
 
         // verify
         assertEquals(actual, expected, "wrong map");
+        mocks.verifyAll();
+    }
+
+    /**
+     * Tests creating optional.
+     *
+     * @throws Exception for any failure
+     */
+    @Test
+    public void testCreateOptional() throws Exception {
+        // set up
+        final Optional<Integer> expected = Optional.of(1);
+        final Object container = new Object() {
+            Optional<Integer> optional;
+        };
+
+        expect(mockOptionalFactory.create(Integer.class)).andReturn(expected);
+
+        mocks.replayAll();
+
+        // exercise
+        final Object actual = factory.create(container.getClass().getDeclaredField("optional").getGenericType());
+
+        // verify
+        assertEquals(actual, expected, "wrong optional");
         mocks.verifyAll();
     }
 

@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -38,6 +39,9 @@ public final class TestClassA {
     /** a string field. */
     private final String stringField;
 
+    /** an optional field. */
+    private final Optional<Integer> optionalField;
+
     /** a list field. */
     private final List<List<Integer>> list;
 
@@ -67,8 +71,9 @@ public final class TestClassA {
     //CHECKSTYLE:SUPPRESS:Param Count
     TestClassA(final boolean booleanField, final byte byteField, final char charField,
              final double doubleField, final float floatField, final int intField, final long longField,
-             final short shortField, final String stringField, final List<List<Integer>> list,
-             final Set<Double> doubles, final Map<Set<Integer>, List<String>> mapField) {
+             final short shortField, final String stringField, final Optional<Integer> optionalField,
+             final List<List<Integer>> list, final Set<Double> doubles,
+             final Map<Set<Integer>, List<String>> mapField) {
         this.booleanField = booleanField;
         this.byteField = byteField;
         this.charField = charField;
@@ -78,6 +83,7 @@ public final class TestClassA {
         this.longField = longField;
         this.shortField = shortField;
         this.stringField = checkNotNull(stringField, "stringField cannot be null");
+        this.optionalField = checkNotNull(optionalField, "optionalField cannot be null");
         this.list = checkNotNull(list, "list cannot be null");
         this.doubleSet = checkNotNull(doubles, "doubles cannot be null");
         this.mapField = checkNotNull(mapField, "mapField cannot be null");
@@ -164,6 +170,15 @@ public final class TestClassA {
      */
     public String getStringField() {
         return stringField;
+    }
+
+    /**
+     * Gets optional field.
+     *
+     * @return the field.
+     */
+    public Optional<Integer> getOptionalField() {
+        return optionalField;
     }
 
     /**
