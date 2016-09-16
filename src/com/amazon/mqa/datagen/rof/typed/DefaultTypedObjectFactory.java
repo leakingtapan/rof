@@ -7,6 +7,7 @@ import com.amazon.mqa.datagen.rof.ObjectFactory;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Default implementation of {@link TypedObjectFactory}.
@@ -22,6 +23,9 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
     /** Creates map object. */
     private final MapFactory mapFactory;
 
+    /** Creates optional objects. */
+    private final OptionalFactory optionalFactory;
+
     /**
      * Instantiates a new {@link DefaultTypedObjectFactory}.
      *
@@ -34,6 +38,7 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
         this.objectFactory = objectFactory;
         this.collectionFactory =  DefaultCollectionFactory.create(this);
         this.mapFactory = DefaultMapFactory.create(this);
+        this.optionalFactory = new DefaultOptionalFactory(this);
     }
 
     /**
@@ -46,10 +51,12 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
      */
     DefaultTypedObjectFactory(final ObjectFactory objectFactory,
                               final CollectionFactory collectionFactory,
-                              final MapFactory mapFactory) {
+                              final MapFactory mapFactory,
+                              final OptionalFactory optionalFactory) {
         this.objectFactory = checkNotNull(objectFactory, "objectFactory cannot be null");
         this.collectionFactory = checkNotNull(collectionFactory, "collectionFactory cannot be null");
         this.mapFactory = checkNotNull(mapFactory, "objectFactory cannot be null");
+        this.optionalFactory = checkNotNull(optionalFactory, "optionalFactory cannot be null");
     }
 
     @Override
@@ -68,6 +75,8 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
             //TODO: add robust way to check if type can be handled
             if (rawType.equals(Map.class)) {
                 return mapFactory.create(actualTypeArguments[0], actualTypeArguments[1]);
+            } else if (rawType.equals(Optional.class)) {
+                return optionalFactory.create(actualTypeArguments[0]);
             } else {
                 return collectionFactory.create(rawType, actualTypeArguments[0]);
             }
