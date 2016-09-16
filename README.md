@@ -43,6 +43,7 @@ Object factory supports following types of object creation:
   - Boolean, Byte, Character, Double, Float, Integer, Long, Short, String, Date, BigInteger, BigDecimal
   - Array of any of above such as int[] or Integer[]
 - Plan Old Java Object (POJO)
+- Optional of any of above such as Optional\<Integer\>
 - Abstract Class Proxy
   - Note: only abstract with empty parameter constructor is supported
 - Interface Proxy

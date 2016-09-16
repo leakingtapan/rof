@@ -13,6 +13,11 @@ final class DefaultOptionalFactory implements OptionalFactory {
     /** Creates objects from type. */
     private final TypedObjectFactory typedObjectFactory;
 
+    /**
+     * Instantiates a new {@link DefaultOptionalFactory}.
+     *
+     * @param typedObjectFactory the object factory to use
+     */
     public DefaultOptionalFactory (final TypedObjectFactory typedObjectFactory) {
         checkNotNull(typedObjectFactory, "typedObjectFactory cannot be null");
 
