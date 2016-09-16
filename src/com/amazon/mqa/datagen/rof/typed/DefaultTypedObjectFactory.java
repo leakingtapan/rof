@@ -47,6 +47,7 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
      * @param objectFactory creates objects.
      * @param collectionFactory creates collections.
      * @param mapFactory creates maps.
+     * @param optionalFactory creates optionals.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
     DefaultTypedObjectFactory(final ObjectFactory objectFactory,
