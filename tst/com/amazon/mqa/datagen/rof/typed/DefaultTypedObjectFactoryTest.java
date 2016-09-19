@@ -135,9 +135,12 @@ public final class DefaultTypedObjectFactoryTest {
     public void testCreateOptional() throws Exception {
         // set up
         final Optional<Integer> expected = Optional.of(1);
+
+        //CHECKSTYLE:SUPPRESS:VisibilityModifier
         final Object container = new Object() {
             Optional<Integer> optional;
         };
+        //CHECKSTYLE:UNSUPPRESS:VisibilityModifier
 
         expect(mockOptionalFactory.create(Integer.class)).andReturn(expected);
 

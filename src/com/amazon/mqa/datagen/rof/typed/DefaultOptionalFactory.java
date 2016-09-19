@@ -18,7 +18,7 @@ final class DefaultOptionalFactory implements OptionalFactory {
      *
      * @param typedObjectFactory the object factory to use
      */
-    public DefaultOptionalFactory (final TypedObjectFactory typedObjectFactory) {
+    public DefaultOptionalFactory(final TypedObjectFactory typedObjectFactory) {
         checkNotNull(typedObjectFactory, "typedObjectFactory cannot be null");
 
         this.typedObjectFactory = typedObjectFactory;
