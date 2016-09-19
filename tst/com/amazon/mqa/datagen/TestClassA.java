@@ -63,6 +63,7 @@ public final class TestClassA {
      * @param longField long Field.
      * @param shortField short field.
      * @param stringField string field.
+     * @param optionalField an Optional field.
      * @param list list field.
      * @param doubles the set of double.
      * @param mapField map field.
