@@ -1,8 +1,6 @@
-import de.johoop.testngplugin.TestNGPlugin._
-
 name := "ObjectFactory"
 
-version := "1.0"
+version := "1.1.0"
 
 organization := "com.amazon.datagen"
 
@@ -13,15 +11,15 @@ description := "a tool which assists in creating randomized Java objects in an e
 licenses += "Apache License Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")
 
 libraryDependencies ++= Seq(
-  "com.google.guava" % "guava" % "18.0",
+  "com.google.guava" % "guava" % "21.0",
   "org.apache.commons" % "commons-lang3" % "3.4",
   "cglib" % "cglib" % "3.2.0",
-  "org.testng" % "testng" % "6.8.8" % "test",
-  "org.easymock" % "easymock" % "3.3.1" % "test"
+  "org.testng" % "testng" % "6.11" % "test",
+  "org.easymock" % "easymock" % "3.4" % "test"
 )
 
 // TestNG settings
-testNGSettings
+enablePlugins(TestNGPlugin)
 
 testNGSuites := Seq("tst/resources/testng.xml")
 
@@ -53,20 +51,18 @@ publishTo := {
 
 pomIncludeRepository := { _ => false }
 
-pomExtra := (
-    <url>"https://github.com/leakingtapan/rof"</url>
+pomExtra := <url>"https://github.com/leakingtapan/rof"</url>
 
-    <scm>
-      <url>https://github.com/leakingtapan/rof</url>
-      <connection>scm:git:https://github.com/leakingtapan/rof.git</connection>
-    </scm>
+  <scm>
+    <url>https://github.com/leakingtapan/rof</url>
+    <connection>scm:git:https://github.com/leakingtapan/rof.git</connection>
+  </scm>
 
-    <developers>
-      <developer>
-        <id>leakingtapan</id>
-        <name>Cheng Pan</name>
-        <url>http://leakingtapan.github.io</url>
-      </developer>
-    </developers>
-)
+  <developers>
+    <developer>
+      <id>leakingtapan</id>
+      <name>Cheng Pan</name>
+      <url>http://leakingtapan.github.io</url>
+    </developer>
+  </developers>
 
