@@ -43,7 +43,7 @@ final class DefaultMapFactory implements MapFactory {
      * @param sizeSupplier supplies array size.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    public DefaultMapFactory(final TypedObjectFactory typedObjectFactory, final Supplier<Integer> sizeSupplier) {
+    DefaultMapFactory(final TypedObjectFactory typedObjectFactory, final Supplier<Integer> sizeSupplier) {
         this.typedObjectFactory = checkNotNull(typedObjectFactory, "typeFactory cannot be null");
         this.sizeSupplier = checkNotNull(sizeSupplier, "sizeSupplier cannot be null");
     }

@@ -29,7 +29,7 @@ public final class DefaultClassSpyTest {
         /**
          * Instantiates a new {@link ClassWithNoArgumentConstructor}.
          */
-        public ClassWithNoArgumentConstructor() { }
+        ClassWithNoArgumentConstructor() { }
 
         /**
          * Test method.
@@ -52,7 +52,7 @@ public final class DefaultClassSpyTest {
          *
          * @param num dummy field.
          */
-        public ClassWithTwoConstructor(final int num) { }
+        ClassWithTwoConstructor(final int num) { }
 
         /**
          * Instantiates a new {@link ClassWithTwoConstructor}.
@@ -60,7 +60,7 @@ public final class DefaultClassSpyTest {
          * @param num1 dummy field 1.
          * @param num2 dummy field 2.
          */
-        public ClassWithTwoConstructor(final int num1, final int num2) { }
+        ClassWithTwoConstructor(final int num1, final int num2) { }
     }
 
     /** Instance under test. */
@@ -77,9 +77,9 @@ public final class DefaultClassSpyTest {
                 {ClassWithoutConstructor.class,
                     "private com.amazon.mqa.datagen.rof.spy.DefaultClassSpyTest$ClassWithoutConstructor()"},
                 {ClassWithNoArgumentConstructor.class,
-                    "public com.amazon.mqa.datagen.rof.spy.DefaultClassSpyTest$ClassWithNoArgumentConstructor()"},
+                    "com.amazon.mqa.datagen.rof.spy.DefaultClassSpyTest$ClassWithNoArgumentConstructor()"},
                 {ClassWithTwoConstructor.class,
-                    "public com.amazon.mqa.datagen.rof.spy.DefaultClassSpyTest$ClassWithTwoConstructor(int)"}
+                    "com.amazon.mqa.datagen.rof.spy.DefaultClassSpyTest$ClassWithTwoConstructor(int)"}
         };
     }
 
