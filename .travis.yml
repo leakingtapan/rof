@@ -2,7 +2,7 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     # Cache the sbt launcher
-    - $HOME/.sbt/launchers/0.13.8
+    - $HOME/.sbt/launchers/1.1.1
 
 language: scala
 
