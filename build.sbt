@@ -18,6 +18,14 @@ libraryDependencies ++= Seq(
   "org.easymock" % "easymock" % "3.4" % "test"
 )
 
+// Checkstyle settings
+checkstyleConfigLocation := CheckstyleConfigLocation.File("configuration/checkstyle/checkstyle-8.8-config.xml")
+
+(checkstyle in Test) := (checkstyle in Test).triggeredBy(compile in Test).value
+(checkstyle in Compile) := (checkstyle in Compile).triggeredBy(compile in Compile).value
+
+checkstyleSeverityLevel := Some(CheckstyleSeverityLevel.Warning)
+
 // TestNG settings
 enablePlugins(TestNGPlugin)
 

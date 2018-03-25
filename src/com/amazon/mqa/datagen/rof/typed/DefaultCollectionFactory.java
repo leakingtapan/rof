@@ -48,7 +48,7 @@ final class DefaultCollectionFactory implements CollectionFactory {
      * @param provider provides concretes collection instance.
      * @throws NullPointerException if any argument is <code>null</code>.
      */
-    public DefaultCollectionFactory(final TypedObjectFactory typedObjectFactory,
+    DefaultCollectionFactory(final TypedObjectFactory typedObjectFactory,
                                     final Supplier<Integer> sizeSupplier,
                                     final CollectionInstanceProvider provider) {
         this.typedObjectFactory = checkNotNull(typedObjectFactory, "typeFactory cannot be null");

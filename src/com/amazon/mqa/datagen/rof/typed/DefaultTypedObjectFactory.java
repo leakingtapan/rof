@@ -61,6 +61,7 @@ public final class DefaultTypedObjectFactory implements TypedObjectFactory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object create(final Type type) {
         checkNotNull(type, "type cannot be null");
 

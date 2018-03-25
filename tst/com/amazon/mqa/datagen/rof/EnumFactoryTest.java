@@ -16,12 +16,12 @@ public final class EnumFactoryTest {
     /**
      * Test empty enum.
      */
-    private static enum EmptyEnum { }
+    private enum EmptyEnum { }
 
     /**
      * Test enum.
      */
-    private static enum TestEnum { ENUM1, ENUM2 }
+    private enum TestEnum { ENUM1, ENUM2 }
 
     /**
      * Tests creating empty enum.

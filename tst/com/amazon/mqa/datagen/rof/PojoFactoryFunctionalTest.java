@@ -32,7 +32,7 @@ public final class PojoFactoryFunctionalTest {
          * @param number int field.
          * @throws NullPointerException if any argument is <code>null</code>.
          */
-        public ClassOnlyHasPrimitive(final String str, final int number) {
+        ClassOnlyHasPrimitive(final String str, final int number) {
             checkNotNull(str, "str cannot be null");
 
             this.str = str;
@@ -53,7 +53,7 @@ public final class PojoFactoryFunctionalTest {
          * @param doubles double list.
          * @throws NullPointerException if any argument is <code>null</code>.
          */
-        public ClassWithPrimitiveCollection(final List<Double> doubles) {
+        ClassWithPrimitiveCollection(final List<Double> doubles) {
             this.doubles = checkNotNull(doubles, "doubles cannot be null");
         }
     }
