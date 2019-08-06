@@ -10,6 +10,7 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'checkstyle'
+    id 'maven'
 }
 
 sourceCompatibility = 1.8
@@ -35,7 +36,7 @@ sourceSets {
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
+    //api 'org.apache.commons:commons-math3:3.6.1'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:27.0.1-jre'
@@ -59,7 +60,7 @@ test {
 }
 
 jar {
-    archivesBaseName = 'rof'
+    archivesBaseName = 'objectfactory'
     archiveVersion =  '1.0.0'
 }
 
@@ -67,4 +68,30 @@ checkstyle {
     configFile = 'configuration/checkstyle/checkstyle-8.8-config.xml' as File
 }
 
+task writeNewPom {
+    doLast {
+        pom {
+            project {
+                inceptionYear '2019'
+                groupId 'com.amazon.datagen'
+                artifactId 'objectfactory'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                version = jar.archiveVersion.get()
+            }
+        }.writeTo("pom.xml")
+    }
+}
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://localhost/tmp/myRepo/")
+        }
+    }
+}
