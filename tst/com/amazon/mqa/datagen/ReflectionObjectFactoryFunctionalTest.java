@@ -5,14 +5,16 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
-import com.amazon.mqa.datagen.rof.ObjectCreationException;
-import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.amazon.mqa.datagen.Foo.CircularFoo;
+import com.amazon.mqa.datagen.rof.ObjectCreationException;
+import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
 
 /**
  * Functional test for {@link ReflectionObjectFactory}.
@@ -344,5 +346,34 @@ public final class ReflectionObjectFactoryFunctionalTest {
         assertNotNull(obj);
     }
     //CHECKSTYLE:UNSUPPRESS:IllegalType
+
+    /**
+     * Creates creating an interface that uses generic types through extension.
+     */
+    @Test
+    public void testInterfaceTypeWithGenerics() {
+        // exercise
+        final Baz actual = ReflectionObjectFactory.createObject(Baz.class);
+
+        // verify
+        assertNotNull(actual);
+        assertTrue(actual.getType() instanceof String);
+    }
+
+    /**
+     * Tests creating a type with a circular type reference.
+     */
+    @Test
+    public void testCircularInterfaceType() {
+        // exercise
+        final Foo foo = ReflectionObjectFactory.createObject(Foo.class);
+        final CircularFoo circularFoo = ReflectionObjectFactory.createObject(Foo.CircularFoo.class);
+
+        // verify
+        assertNotNull(foo, "foo");
+        assertNotNull(circularFoo, "circular foo");
+        assertNotNull(circularFoo.getFoo(), "circular foo foo");
+
+    }
 
 }

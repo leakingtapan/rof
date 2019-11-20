@@ -1,17 +1,18 @@
 package com.amazon.mqa.datagen;
 
-import com.amazon.mqa.datagen.rof.DefaultObjectFactory;
-import com.amazon.mqa.datagen.rof.ObjectFactory;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.amazon.mqa.datagen.rof.DefaultObjectFactory;
+import com.amazon.mqa.datagen.rof.NonNullObjectFactory;
+import com.amazon.mqa.datagen.rof.ObjectFactory;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * Abstract object factory.
@@ -41,10 +42,10 @@ public abstract class AbstractObjectFactory implements ObjectFactory {
         checkNotNull(config, "config cannot be null");
 
         this.config = config;
-        this.factory = new DefaultObjectFactory(
-                config.getSuppliers(),
-                config.getPmSuppliers(),
-                config.getArraySizeSupplier());
+
+        final ObjectFactory defaultFactory = new DefaultObjectFactory(config.getSuppliers(),
+                config.getPmSuppliers(), config.getArraySizeSupplier());
+        this.factory = new NonNullObjectFactory(defaultFactory);
     }
 
     /**

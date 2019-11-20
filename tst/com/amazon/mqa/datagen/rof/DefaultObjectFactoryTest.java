@@ -2,13 +2,15 @@ package com.amazon.mqa.datagen.rof;
 
 import static org.easymock.EasyMock.expect;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.amazon.mqa.datagen.supplier.MinMaxIntegerSupplier;
 import com.amazon.mtqa.testutil.MockObjectContainer;
 import com.google.common.base.Supplier;
 import com.google.common.collect.Lists;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 /** Unit test for {@link DefaultObjectFactory}. */
 public final class DefaultObjectFactoryTest {
@@ -64,7 +66,7 @@ public final class DefaultObjectFactoryTest {
     /**
      * Tests creating unhandled object.
      */
-    @Test(expectedExceptions = ObjectCreationException.class)
+    @Test
     public void testCreateUnhandledClass() {
         // set up
         final Class<Integer> clazz = Integer.class;
@@ -75,7 +77,10 @@ public final class DefaultObjectFactoryTest {
         mocks.replayAll();
 
         // exercise
-        factory.create(clazz);
+        final Integer actual = factory.create(clazz);
+
+        // verify
+        assertNull(actual);
     }
 
 }

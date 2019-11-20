@@ -2,12 +2,12 @@ package com.amazon.mqa.datagen.rof;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+import java.util.Map;
+
 import com.amazon.mqa.datagen.rof.typed.DefaultTypedObjectFactory;
 import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableList;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates object by calling create in a list of {@link ObjectFactory} until an object is created
@@ -42,6 +42,7 @@ public final class DefaultObjectFactory implements ObjectFactory {
                 new ObjectArrayFactory(this, arraySizeSupplier),
                 new EnumFactory(),
                 PojoFactory.create(this),
+                new InterfaceFactory(this),
                 new InterfaceProxyFactory(handler),
                 new AbstractClassProxyFactory(handler)
         );
@@ -61,14 +62,11 @@ public final class DefaultObjectFactory implements ObjectFactory {
     public <T> T create(final Class<T> clazz) {
         checkNotNull(clazz, "clazz cannot be null");
 
-        for (final ObjectFactory factory : objectFactories) {
-            final T object = factory.create(clazz);
-            if (object != null) {
-                return object;
-            }
-        }
-
-        throw new ObjectCreationException("Unsupported class: " + clazz);
+        return objectFactories.stream()
+                .map(f -> f.create(clazz))
+                .filter(e -> e != null)
+                .findFirst()
+                .orElse(null);
     }
 
 }
