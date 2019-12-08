@@ -10,7 +10,7 @@ public interface Foo {
     /**
      * A class that presents a circular dependency on a type.
      */
-    static final class CircularFoo implements Foo {
+    final class CircularFoo implements Foo {
 
         /** The Foo reference. */
         private final Foo foo;
